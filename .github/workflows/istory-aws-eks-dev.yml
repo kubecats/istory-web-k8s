@@ -111,7 +111,7 @@ jobs:
           echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> overlay/aws-dev/.env.secret
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> overlay/aws-dev/.env.secret
         
-      # # 이미지 태그 업데이트
+      # # 이미지 태그 업데이트.
       # - name: 11.쿠버네티스 매니페스트 파일 이미지 태그 업데이트 with Kustomize
       #   run: |
       #     # Ensure kustomize is installed
