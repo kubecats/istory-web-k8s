@@ -93,31 +93,31 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
           logout: true
 
-    #   - name: 9.Docker Push
-    #     run: |
-    #       docker push ${{ secrets.DOCKER_USERNAME }}/istory:${{ env.DOCKER_TAG }}
-    #   # 서비스 리포지토리 체크아웃
-    #   - name: 10.서비스 리포지토리 체크아웃
-    #     uses: actions/checkout@v4
-    #     with:
-    #       repository: dangtong76/istory-platform   # 바꾸기
-    #       ref: main # 바꾸기
-    #       path: .
-    #       token: ${{ secrets.GIT_PAT }}
-    #   - name: 2..env.secret 파일 생성 (k8s-dev for Kustomize)
-    #     run: |
-    #       echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> overlay/aws-dev/.env.secret
-    #       echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> overlay/aws-dev/.env.secret
-    #       echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> overlay/aws-dev/.env.secret
-    #       echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> overlay/aws-dev/.env.secret
+      - name: 9.Docker Push
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/istory:${{ env.DOCKER_TAG }}
+      # 서비스 리포지토리 체크아웃
+      - name: 10.서비스 리포지토리 체크아웃
+        uses: actions/checkout@v4
+        with:
+          repository: dangtong76/istory-platform   # 바꾸기
+          ref: main # 바꾸기
+          path: .
+          token: ${{ secrets.GIT_PAT }}
+      - name: 2..env.secret 파일 생성 (k8s-dev for Kustomize)
+        run: |
+          echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> overlay/aws-dev/.env.secret
+          echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> overlay/aws-dev/.env.secret
+          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> overlay/aws-dev/.env.secret
+          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> overlay/aws-dev/.env.secret
         
-    #   # # 이미지 태그 업데이트
-    #   # - name: 11.쿠버네티스 매니페스트 파일 이미지 태그 업데이트 with Kustomize
-    #   #   run: |
-    #   #     # Ensure kustomize is installed
-    #   #     curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-    #   #     # Build the kustomize configuration
-    #   #     ./kustomize build overlay/aws-dev -o istory-app-deploy.yaml
+      # # 이미지 태그 업데이트
+      # - name: 11.쿠버네티스 매니페스트 파일 이미지 태그 업데이트 with Kustomize
+      #   run: |
+      #     # Ensure kustomize is installed
+      #     curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+      #     # Build the kustomize configuration
+      #     ./kustomize build overlay/aws-dev -o istory-app-deploy.yaml
 
     #   - name: 11.쿠버네티스 매니페스트 파일 이미지 태그 업데이트
     #     run: |
