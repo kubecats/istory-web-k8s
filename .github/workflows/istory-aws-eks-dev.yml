@@ -134,7 +134,7 @@ jobs:
       - name: kustomize update image yaml
         run: |
           cd overlay/aws-dev
-          kustomize edit set image istory=kubecats/istory:${{ github.run_number }}
+          kustomize edit set image ${{ secrets.DOCKER_USERNAME }}/istory=${{ secrets.DOCKER_USERNAME }}/istory:${{ github.run_number }}
       - name: push yaml
         run: |
           git config --global user.name 'github-actions[bot]'
