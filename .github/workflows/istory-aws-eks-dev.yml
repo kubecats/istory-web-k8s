@@ -97,7 +97,7 @@ jobs:
       - name: 9.Docker Push
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/istory:${{ env.DOCKER_TAG }}
-          
+
       # 서비스 리포지토리 체크아웃
       - name: 10.서비스 리포지토리 체크아웃
         uses: actions/checkout@v4
@@ -138,7 +138,7 @@ jobs:
   
       - name: Update kubeconfig for EKS
         run: |
-          aws eks update-kubeconfig --region $AWS_REGION --name your-cluster-name        
+          aws eks update-kubeconfig --region $AWS_REGION --name istory        
 
 
       # # 이미지 태그 업데이트.
